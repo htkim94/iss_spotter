@@ -1,5 +1,13 @@
 const request = require("request");
 
+const timePrinter = (time) => {
+  for (let t of time) {
+    const d = new Date(0);
+    d.setUTCSeconds(t.risetime);
+    console.log(`Next pass at ${d} for ${t.duration} seconds!`);
+  }
+}
+
 const fetchMyIP = (callback) => {
   request("https://api.ipify.org?format=json", (error, response, body) => {
     if (error) return callback(error, null);
@@ -82,4 +90,5 @@ const nextISSTimesForMyLocation = (callback) => {
 
 module.exports = {
   nextISSTimesForMyLocation,
+  timePrinter,
 };
